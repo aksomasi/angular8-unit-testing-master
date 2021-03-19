@@ -19,6 +19,7 @@ import {
   MatTableModule
 } from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
+import { ProfileSearchComponent } from './profile-search/profile-search.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {HttpClientModule} from '@angular/common/http';
     UserAsyncComponent,
     ProfileGridComponent,
     ProfilesListComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    ProfileSearchComponent
   ],
   imports: [
     BrowserModule,

@@ -55,22 +55,6 @@ export class ProfilesListComponent  implements OnInit{
     this.sort.direction = 'asc';
   }
 
-  // temp data for local testing
-  tempData() {
-    const data: AssociatedCompany[] = [];
-    for (let line = 8000; line < 8120; line++) {
-      let company = line + 1 + ' Verizon' + ' '  + 'Ebilling' + ' ' + 'Management' + ' ' + 'Hyderabad' + ' ' + 'Verizon' + ' ';
-      if(line === 8005 || line === 8110) {
-        company = line + 1 + ' Engineer Verizon' ;
-      }
-      if(line === 8004 || line === 8110) {
-        company = line + 1 + ' Verizon' ;
-      }
-      data.push({ ecpdId: (line + 1).toString(), companyName:  company});
-    }
-    return data;
-  }
-
   defineFilter() {
     const list = this.dataService.getLinksetProfilesList();
     // const list =  this.tempData();
@@ -79,7 +63,7 @@ export class ProfilesListComponent  implements OnInit{
       if(!this.sort) {
         this.defaultSort();
       }
-   //   this.dataSource.sortData(this.dataSource.data, this.sort);
+      this.dataSource.sortData(this.dataSource.data, this.sort);
       this.profileList = this.dataSource.filteredData.slice(
         (this.activePage - 1) * this.selectedFilter,
         this.activePage * this.selectedFilter
@@ -168,6 +152,9 @@ export class ProfilesListComponent  implements OnInit{
     this.splittedData = new Array<AssociatedCompany[]>(3);
     // @ts-ignore
     // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     if (this.profileList.length > 0) {
       switch (this.selectedFilter) {
         case 30:
@@ -190,8 +177,10 @@ export class ProfilesListComponent  implements OnInit{
           break;
       }
 
+      if(this.splittedData[1])
       this.isTable2 = this.splittedData[1].length > 1 ? true : false;
-      this.isTable3 = this.splittedData[2].length > 1 ? true : false;
+      if(this.splittedData[2])
+        this.isTable3 = this.splittedData[2].length > 1 ? true : false;
     }
   }
 
